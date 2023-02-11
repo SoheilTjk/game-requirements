@@ -10,22 +10,23 @@ import java.util.Objects;
 
 public class Requirements implements ActionListener {
     String pleaseChoose = " Please Choose ";
-    int[] minimumArray, recomendedArray;
-    boolean minimum , recomended;
+    int[] minimumArray, recommendedArray;
+    boolean minimum , recommended;
     boolean cpuCoreMinimum = false;
     boolean cpuGenMinimum = false;
     boolean ramMinimum = false;
     boolean gpuMinimum = false;
-    boolean cpuCoreRecomended = false;
-    boolean cpuGenRecomended = false;
-    boolean ramRecomended = false;
-    boolean gpuRecomended = false;
+    boolean cpuCoreRecommended = false;
+    boolean cpuGenRecommended = false;
+    boolean ramRecommended = false;
+    boolean gpuRecommended = false;
     JFrame frame, frameRequirements;
     JLabel labelGame, labelCPU, labelRAM, labelGPU, labelGen;
     JComboBox<String> comboBoxGame, comboBoxCPU, comboBoxGPU;
     JTextField textFieldGen, textFieldRam, textFieldGPU;
     Font titleFont, textFont;
 
+    //main body
     public void mainFrame() throws IOException, FontFormatException {
         frame = new JFrame("Games Requirements");
         frame.setSize(500, 540);
@@ -38,6 +39,7 @@ public class Requirements implements ActionListener {
         frame.setVisible(true);
     }
 
+    //labels, forms and Information
     public void placeComponents(JPanel panel) throws IOException, FontFormatException {
         panel.setLayout(null);
 
@@ -68,7 +70,8 @@ public class Requirements implements ActionListener {
 
         String[] gamesList = {
                 pleaseChoose,
-                "Resident Evil Village"
+                "Resident Evil Village",
+                "Hogwarts Legacy"
         };
         comboBoxGame = new JComboBox<>(gamesList);
         comboBoxGame.setBounds(190, 30, 250, 30);
@@ -117,14 +120,19 @@ public class Requirements implements ActionListener {
         panel.add(button);
     }
 
+    //action
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Resident Evil Village")) {
             minimumArray = new int[]{5, 7500, 8, 1050};
-            recomendedArray = new int[]{7, 8700, 16, 1070};
+            recommendedArray = new int[]{7, 8700, 16, 1070};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Hogwarts Legacy")) {
+            minimumArray = new int[]{5, 6600, 16, 960};
+            recommendedArray = new int[]{7, 8700, 16, 1080};
         }
 
-//minimum for resident evil village
+        //minimum for resident evil village
         if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= minimumArray[0]) {
             cpuCoreMinimum = true;
             if (Integer.parseInt(textFieldGen.getText().trim()) >= minimumArray[1]) {
@@ -145,26 +153,26 @@ public class Requirements implements ActionListener {
         } else System.out.println("no cpu core minimum");
 
 
-        //recomended
+        //recommended for resident evil village
         if (minimum) {
-            if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recomendedArray[0]) {
-                cpuCoreRecomended = true;
-                if (Integer.parseInt(textFieldGen.getText().trim()) >= recomendedArray[1]) {
-                    System.out.println("yes cpu recomended");
-                    cpuGenRecomended = true;
-                    if (Integer.parseInt(textFieldRam.getText()) >= recomendedArray[2]) {
-                        System.out.println("yes ram recomended");
-                        ramRecomended = true;
-                    } else System.out.println("no ram recomended");
-                    if (Integer.parseInt(textFieldGPU.getText()) >= recomendedArray[3]) {
-                        System.out.println("yes gpu recomended");
-                        gpuRecomended = true;
-                    } else System.out.println("no gpu recomended");
-                } else System.out.println("no cpu gen recomended");
-                if (cpuCoreRecomended && cpuGenRecomended && ramRecomended && gpuRecomended) {
-                    recomended = true;
+            if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
+                cpuCoreRecommended = true;
+                if (Integer.parseInt(textFieldGen.getText().trim()) >= recommendedArray[1]) {
+                    System.out.println("yes cpu recommended");
+                    cpuGenRecommended = true;
+                    if (Integer.parseInt(textFieldRam.getText()) >= recommendedArray[2]) {
+                        System.out.println("yes ram recommended");
+                        ramRecommended = true;
+                    } else System.out.println("no ram recommended");
+                    if (Integer.parseInt(textFieldGPU.getText()) >= recommendedArray[3]) {
+                        System.out.println("yes gpu recommended");
+                        gpuRecommended = true;
+                    } else System.out.println("no gpu recommended");
+                } else System.out.println("no cpu gen recommended");
+                if (cpuCoreRecommended && cpuGenRecommended && ramRecommended && gpuRecommended) {
+                    recommended = true;
                 }
-            } else System.out.println("no cpu core recomended");
-        } else recomended = false;
+            } else System.out.println("no cpu core recommended");
+        } else recommended = false;
     }
 }
