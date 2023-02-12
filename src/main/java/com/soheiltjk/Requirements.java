@@ -91,7 +91,7 @@ public class Requirements implements ActionListener {
         panel.add(comboBoxCPU);
 
 
-        textFieldGen = new JTextField("note");
+        textFieldGen = new JTextField();
         textFieldGen.setBounds(325, 110, 115, 30);
         textFieldGen.setFont(textFont);
         panel.add(textFieldGen);
@@ -132,7 +132,7 @@ public class Requirements implements ActionListener {
             recommendedArray = new int[]{7, 8700, 16, 1080};
         }
 
-        //minimum for resident evil village
+        //minimum
         if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= minimumArray[0]) {
             cpuCoreMinimum = true;
             if (Integer.parseInt(textFieldGen.getText().trim()) >= minimumArray[1]) {
@@ -153,7 +153,7 @@ public class Requirements implements ActionListener {
         } else System.out.println("no cpu core minimum");
 
 
-        //recommended for resident evil village
+        //recommended
         if (minimum) {
             if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
                 cpuCoreRecommended = true;
@@ -174,5 +174,117 @@ public class Requirements implements ActionListener {
                 }
             } else System.out.println("no cpu core recommended");
         } else recommended = false;
+
+        if (e.getActionCommand().equals("check")) {
+            frameRequirements = new JFrame("%s Requirements".formatted(comboBoxGame.getSelectedItem()));
+            frameRequirements.setSize(500, 540);
+            frameRequirements.setLocationRelativeTo(null);
+            frameRequirements.setResizable(false);
+            JPanel panelRequirements = new JPanel();
+            frameRequirements.add(panelRequirements);
+            showRequirements(panelRequirements);
+            panelRequirements.setLayout(null);
+            frameRequirements.setVisible(true);
+        }
+    }
+    public void showRequirements(JPanel panelRequirements) {
+        JLabel labelGameSelected = new JLabel("%s Requirements".formatted(comboBoxGame.getSelectedItem()), SwingConstants.CENTER);
+        labelGameSelected.setBounds(0, 20, 500, 40);
+        labelGameSelected.setFont(textFont);
+        panelRequirements.add(labelGameSelected);
+        JSeparator separator = new JSeparator();
+        separator.setOrientation(SwingConstants.HORIZONTAL);
+        separator.setBounds(100, 90, 300,10);
+        panelRequirements.add(separator);
+
+        JLabel labelUnder30fps = new JLabel("fps < 30", JLabel.CENTER);
+        labelUnder30fps.setBounds(30, 200, 120, 40);
+        labelUnder30fps.setOpaque(true);
+        labelUnder30fps.setForeground(Color.WHITE);
+        labelUnder30fps.setBackground(new Color(255, 102, 102));
+        labelUnder30fps.setFont(textFont);
+        panelRequirements.add(labelUnder30fps);
+
+        JLabel label30to60fps = new JLabel("30 < fps < 60", JLabel.CENTER);
+        label30to60fps.setBounds(150, 200, 200, 40);
+        label30to60fps.setOpaque(true);
+        label30to60fps.setForeground(Color.WHITE);
+        label30to60fps.setBackground(new Color(0, 255, 127));
+        label30to60fps.setFont(textFont);
+        panelRequirements.add(label30to60fps);
+
+        JLabel labelUpper60fps = new JLabel("60 < fps", JLabel.CENTER);
+        labelUpper60fps.setBounds(350, 200, 100, 40);
+        labelUpper60fps.setOpaque(true);
+        labelUpper60fps.setForeground(Color.WHITE);
+        labelUpper60fps.setBackground(new Color(0, 204, 0));
+        labelUpper60fps.setFont(textFont);
+        panelRequirements.add(labelUpper60fps);
+
+        JLabel lineUnder30fps = new JLabel("", JLabel.CENTER);
+        lineUnder30fps.setBounds(91, 180, 3, 20);
+        lineUnder30fps.setOpaque(true);
+        lineUnder30fps.setBackground(new Color(128, 128, 128));
+        panelRequirements.add(lineUnder30fps);
+
+        JLabel line30to60fps = new JLabel("", JLabel.CENTER);
+        line30to60fps.setBounds(251, 180, 3, 20);
+        line30to60fps.setOpaque(true);
+        line30to60fps.setBackground(new Color(128, 128, 128));
+        panelRequirements.add(line30to60fps);
+
+        JLabel lineUpper60fps = new JLabel("", JLabel.CENTER);
+        lineUpper60fps.setBounds(401, 180, 3, 20);
+        lineUpper60fps.setOpaque(true);
+        lineUpper60fps.setBackground(new Color(128, 128, 128));
+        panelRequirements.add(lineUpper60fps);
+
+        JLabel fpsUnder30 = new JLabel("your fps", JLabel.CENTER);
+        fpsUnder30.setBounds(30, 150, 120, 20);
+        fpsUnder30.setOpaque(true);
+        fpsUnder30.setFont(textFont);
+        panelRequirements.add(fpsUnder30);
+
+        JLabel fps30to60 = new JLabel("your fps", JLabel.CENTER);
+        fps30to60.setBounds(150, 150, 200, 20);
+        fps30to60.setOpaque(true);
+        fps30to60.setFont(textFont);
+        panelRequirements.add(fps30to60);
+
+        JLabel fpsUpper60 = new JLabel("your fps", JLabel.CENTER);
+        fpsUpper60.setBounds(350, 150, 100, 20);
+        fpsUpper60.setOpaque(true);
+        fpsUpper60.setFont(textFont);
+        panelRequirements.add(fpsUpper60);
+
+        JLabel cpuLabel = new JLabel("Your CPU: ");
+        cpuLabel.setBounds(30, 300, 200, 20);
+        cpuLabel.setFont(textFont);
+        panelRequirements.add(cpuLabel);
+
+        JLabel ramLabel = new JLabel("Your RAM: ");
+        ramLabel.setBounds(30, 340, 200, 20);
+        ramLabel.setFont(textFont);
+        panelRequirements.add(ramLabel);
+
+        JLabel gpuLabel = new JLabel("Your GPU: ");
+        gpuLabel.setBounds(30, 380, 200, 20);
+        gpuLabel.setFont(textFont);
+        panelRequirements.add(gpuLabel);
+
+        JLabel yourCpuLabel = new JLabel(comboBoxCPU.getSelectedItem() + " " + textFieldGen.getText());
+        yourCpuLabel.setBounds(140, 300, 200, 20);
+        yourCpuLabel.setFont(textFont);
+        panelRequirements.add(yourCpuLabel);
+
+        JLabel yourRamLabel = new JLabel(textFieldRam.getText() + " GB");
+        yourRamLabel.setBounds(140, 340, 200, 20);
+        yourRamLabel.setFont(textFont);
+        panelRequirements.add(yourRamLabel);
+
+        JLabel yourGpuLabel = new JLabel(comboBoxGPU.getSelectedItem() + " " + textFieldGPU.getText());
+        yourGpuLabel.setBounds(140, 380, 200, 20);
+        yourGpuLabel.setFont(textFont);
+        panelRequirements.add(yourGpuLabel);
     }
 }
