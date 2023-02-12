@@ -11,7 +11,8 @@ import java.util.Objects;
 public class Requirements implements ActionListener {
     String pleaseChoose = " Please Choose ";
     int[] minimumArray, recommendedArray;
-    boolean minimum , recommended;
+    boolean minimum = false;
+    boolean recommended = false;
     boolean cpuCoreMinimum = false;
     boolean cpuGenMinimum = false;
     boolean ramMinimum = false;
@@ -21,7 +22,7 @@ public class Requirements implements ActionListener {
     boolean ramRecommended = false;
     boolean gpuRecommended = false;
     JFrame frame, frameRequirements;
-    JLabel labelGame, labelCPU, labelRAM, labelGPU, labelGen;
+    JLabel labelGame, labelCPU, labelRAM, labelGPU;
     JComboBox<String> comboBoxGame, comboBoxCPU, comboBoxGPU;
     JTextField textFieldGen, textFieldRam, textFieldGPU;
     Font titleFont, textFont;
@@ -81,9 +82,9 @@ public class Requirements implements ActionListener {
         String[] cpuList = {
                 pleaseChoose,
                 "i3",
-                "I5",
-                "I7",
-                "I9"
+                "i5",
+                "i7",
+                "i9"
         };
         comboBoxCPU = new JComboBox<>(cpuList);
         comboBoxCPU.setBounds(190, 110, 115, 30);
@@ -132,48 +133,69 @@ public class Requirements implements ActionListener {
             recommendedArray = new int[]{7, 8700, 16, 1080};
         }
 
-        //minimum
-        if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= minimumArray[0]) {
-            cpuCoreMinimum = true;
-            if (Integer.parseInt(textFieldGen.getText().trim()) >= minimumArray[1]) {
-                System.out.println("yes cpu minimum");
-                cpuGenMinimum = true;
-                if (Integer.parseInt(textFieldRam.getText()) >= minimumArray[2]) {
-                    System.out.println("yes ram minimum");
-                    ramMinimum = true;
-                } else System.out.println("no ram minimum");
-                if (Integer.parseInt(textFieldGPU.getText()) >= minimumArray[3]) {
-                    System.out.println("yes gpu minimum");
-                    gpuMinimum = true;
-                } else System.out.println("no gpu minimum");
-            } else System.out.println("no cpu gen minimum");
-            if (cpuCoreMinimum && cpuGenMinimum && ramMinimum && gpuMinimum) {
-                minimum = true;
-            }
-        } else System.out.println("no cpu core minimum");
-
 
         //recommended
-        if (minimum) {
-            if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
-                cpuCoreRecommended = true;
-                if (Integer.parseInt(textFieldGen.getText().trim()) >= recommendedArray[1]) {
-                    System.out.println("yes cpu recommended");
-                    cpuGenRecommended = true;
-                    if (Integer.parseInt(textFieldRam.getText()) >= recommendedArray[2]) {
-                        System.out.println("yes ram recommended");
-                        ramRecommended = true;
-                    } else System.out.println("no ram recommended");
-                    if (Integer.parseInt(textFieldGPU.getText()) >= recommendedArray[3]) {
-                        System.out.println("yes gpu recommended");
-                        gpuRecommended = true;
-                    } else System.out.println("no gpu recommended");
-                } else System.out.println("no cpu gen recommended");
-                if (cpuCoreRecommended && cpuGenRecommended && ramRecommended && gpuRecommended) {
-                    recommended = true;
-                }
-            } else System.out.println("no cpu core recommended");
-        } else recommended = false;
+
+        if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
+            cpuCoreRecommended = true;
+            cpuCoreMinimum = true;
+            System.out.println("cpu core recomended: " + cpuCoreRecommended);
+        } else if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= minimumArray[0]) {
+            cpuCoreMinimum = true;
+            cpuCoreRecommended = false;
+            System.out.println("cpu core minimum: " + cpuCoreMinimum);
+        } else {
+            cpuCoreRecommended = false;
+            cpuCoreMinimum = false;
+        }
+
+        if (Integer.parseInt(textFieldGen.getText().trim()) >= recommendedArray[1]) {
+            cpuGenRecommended = true;
+            cpuGenMinimum = true;
+            System.out.println("cpu gen recom: " + cpuGenRecommended);
+        } else if (Integer.parseInt(textFieldGen.getText().trim()) >= minimumArray[1] && Integer.parseInt(textFieldGen.getText().trim()) <= recommendedArray[1]) {
+            cpuGenMinimum = true;
+            cpuGenRecommended = false;
+            System.out.println("cpu gen min: " + cpuGenRecommended);
+        } else {
+            cpuGenRecommended = false;
+            cpuGenMinimum = false;
+        }
+
+        if (Integer.parseInt(textFieldRam.getText()) >= recommendedArray[2]) {
+            ramRecommended = true;
+            ramMinimum = false;
+            System.out.println("ram recom : " + ramRecommended);
+        } else if (Integer.parseInt(textFieldRam.getText()) >= minimumArray[2] && Integer.parseInt(textFieldRam.getText()) <= recommendedArray[2]) {
+            ramMinimum = true;
+            ramRecommended = false;
+            System.out.println("ram min: " + ramMinimum);
+        } else {
+            ramRecommended = false;
+            ramMinimum = false;
+        }
+
+        if (Integer.parseInt(textFieldGPU.getText()) >= recommendedArray[3]) {
+            gpuRecommended = true;
+            gpuMinimum = true;
+            System.out.println("gpu recom: " + gpuRecommended);
+        } else if (Integer.parseInt(textFieldGPU.getText()) >= minimumArray[3] && Integer.parseInt(textFieldGPU.getText()) <= recommendedArray[3]) {
+            gpuMinimum = true;
+            gpuRecommended = false;
+            System.out.println("gpu min: " + gpuMinimum);
+        } else {
+            gpuRecommended = false;
+            gpuMinimum = false;
+        }
+
+
+        if (cpuCoreRecommended && cpuGenRecommended && ramRecommended && gpuRecommended) recommended = true;
+        System.out.println("recom accepted");
+        if (cpuCoreMinimum && cpuGenMinimum && ramMinimum && gpuMinimum) minimum = true;
+        System.out.println("minimum accepted");
+
+
+
 
         if (e.getActionCommand().equals("check")) {
             frameRequirements = new JFrame("%s Requirements".formatted(comboBoxGame.getSelectedItem()));
@@ -286,5 +308,42 @@ public class Requirements implements ActionListener {
         yourGpuLabel.setBounds(140, 380, 200, 20);
         yourGpuLabel.setFont(textFont);
         panelRequirements.add(yourGpuLabel);
+
+
+
+        if (!cpuCoreRecommended && !cpuGenRecommended && !cpuCoreMinimum && !cpuGenMinimum) {
+            yourCpuLabel.setForeground(Color.RED);
+        } else if (cpuCoreRecommended && cpuGenRecommended && cpuCoreMinimum && cpuGenMinimum) {
+            yourCpuLabel.setForeground(Color.BLUE);
+        } else if (cpuCoreRecommended && !cpuGenRecommended && cpuCoreMinimum && cpuGenMinimum) {
+            yourCpuLabel.setForeground(Color.GREEN);
+        } else if (cpuCoreRecommended && !cpuGenRecommended && cpuCoreMinimum) {
+            yourCpuLabel.setForeground(Color.GREEN);
+        } else if (!cpuCoreRecommended && cpuGenRecommended && !cpuCoreMinimum && cpuGenMinimum) {
+            yourCpuLabel.setForeground(Color.GREEN);
+        } else if (!cpuCoreRecommended && !cpuGenRecommended && !cpuCoreMinimum) {
+            yourCpuLabel.setForeground(Color.GREEN);
+        } else if (!cpuCoreRecommended && cpuGenRecommended && cpuCoreMinimum && cpuGenMinimum) {
+            yourCpuLabel.setForeground(Color.GREEN);
+        } else if (!cpuCoreRecommended && !cpuGenRecommended && cpuGenMinimum) {
+            yourCpuLabel.setForeground(Color.GREEN);
+        } else if (!cpuCoreRecommended && !cpuGenRecommended) {
+            yourCpuLabel.setForeground(Color.RED);
+        }
+
+
+        if (!ramRecommended && !ramMinimum) {
+            yourRamLabel.setForeground(Color.RED);
+        } else if (ramMinimum && !ramRecommended) {
+            yourRamLabel.setForeground(Color.GREEN);
+        }else {
+            yourRamLabel.setForeground(Color.BLUE);
+        }
+
+        if (!gpuRecommended && !gpuMinimum) {
+            yourGpuLabel.setForeground(Color.RED);
+        } else if (gpuRecommended) {
+            yourGpuLabel.setForeground(Color.BLUE);
+        } else yourGpuLabel.setForeground(Color.GREEN);
     }
 }
