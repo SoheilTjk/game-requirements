@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Requirements implements ActionListener {
@@ -79,8 +80,11 @@ public class Requirements implements ActionListener {
         String[] gamesList = {
                 pleaseChoose,
                 "Resident Evil Village",
-                "Hogwarts Legacy"
+                "Hogwarts Legacy",
+                "Control"
         };
+        Arrays.sort(gamesList);
+
         comboBoxGame = new JComboBox<>(gamesList);
         comboBoxGame.setBounds(190, 30, 250, 30);
         comboBoxGame.setFont(textFont);
@@ -88,10 +92,10 @@ public class Requirements implements ActionListener {
 
         String[] cpuList = {
                 pleaseChoose,
-                "i3",
-                "i5",
-                "i7",
-                "i9"
+                "Core i3",
+                "Core i5",
+                "Core i7",
+                "Core i9"
         };
         comboBoxCPU = new JComboBox<>(cpuList);
         comboBoxCPU.setBounds(190, 110, 115, 30);
@@ -138,6 +142,10 @@ public class Requirements implements ActionListener {
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Hogwarts Legacy")) {
             minimumArray = new int[]{5, 6600, 16, 960};
             recommendedArray = new int[]{7, 8700, 16, 1080};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Control")) {
+            minimumArray = new int[]{5, 4690, 8, 780};
+            recommendedArray = new int[]{5, 7600, 16, 1660};
         }
 
 
@@ -349,7 +357,7 @@ public class Requirements implements ActionListener {
         } else if (!cpu && ram) {
             line30to60fps.setVisible(true);
             fps30to60.setVisible(true);
-        } else if (cpu && gpu) {
+        } else if (cpu) {
             line30to60fps.setVisible(true);
             fps30to60.setVisible(true);
         } else if (gpu) {
