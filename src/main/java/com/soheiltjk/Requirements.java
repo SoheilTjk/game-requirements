@@ -21,11 +21,14 @@ public class Requirements implements ActionListener {
     boolean cpuGenRecommended = false;
     boolean ramRecommended = false;
     boolean gpuRecommended = false;
+    boolean cpu = false;
+    boolean ram = false;
+    boolean gpu = false;
     JFrame frame, frameRequirements;
     JLabel labelGame, labelCPU, labelRAM, labelGPU;
     JComboBox<String> comboBoxGame, comboBoxCPU, comboBoxGPU;
     JTextField textFieldGen, textFieldRam, textFieldGPU;
-    Font titleFont, textFont;
+    Font titleFont, textFont, infoFont, buttonFont;
 
     //main body
     public void mainFrame() throws IOException, FontFormatException {
@@ -44,10 +47,14 @@ public class Requirements implements ActionListener {
     public void placeComponents(JPanel panel) throws IOException, FontFormatException {
         panel.setLayout(null);
 
-        File fontFile = new File("src/main/resources/fonts/Comfortaa-VariableFont_wght.ttf");
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-        titleFont = font.deriveFont(28f);
-        textFont = font.deriveFont(18f);
+        File fontFile1 = new File("src/main/resources/fonts/Comfortaa-Regular.ttf");
+        Font font1 = Font.createFont(Font.TRUETYPE_FONT, fontFile1);
+        File fontFile2 = new File("src/main/resources/fonts/Comfortaa-Bold.ttf");
+        Font font2 = Font.createFont(Font.TRUETYPE_FONT, fontFile2);
+        titleFont = font1.deriveFont(28f);
+        textFont = font1.deriveFont(18f);
+        infoFont = font1.deriveFont(22f);
+        buttonFont = font2.deriveFont(30f);
 
         labelGame = new JLabel("Game", SwingConstants.LEFT);
         labelGame.setBounds(50, 30, 150, 40);
@@ -113,10 +120,10 @@ public class Requirements implements ActionListener {
         textFieldGPU.setFont(textFont);
         panel.add(textFieldGPU);
 
-        JButton button = new JButton("check");
+        JButton button = new JButton("Check");
         button.setBounds(140, 370, 200, 60);
         button.setForeground(new Color(255, 86, 119));
-        button.setFont(titleFont);
+        button.setFont(buttonFont);
         button.addActionListener(this);
         panel.add(button);
     }
@@ -162,6 +169,10 @@ public class Requirements implements ActionListener {
             cpuGenMinimum = false;
         }
 
+        if (cpuCoreMinimum && cpuGenMinimum || cpuCoreRecommended && cpuGenRecommended) {
+            cpu = true;
+        }
+
         if (Integer.parseInt(textFieldRam.getText()) >= recommendedArray[2]) {
             ramRecommended = true;
             ramMinimum = false;
@@ -173,6 +184,10 @@ public class Requirements implements ActionListener {
         } else {
             ramRecommended = false;
             ramMinimum = false;
+        }
+
+        if (ramMinimum || ramRecommended) {
+            ram = true;
         }
 
         if (Integer.parseInt(textFieldGPU.getText()) >= recommendedArray[3]) {
@@ -188,6 +203,10 @@ public class Requirements implements ActionListener {
             gpuMinimum = false;
         }
 
+        if (gpuMinimum || gpuRecommended) {
+            gpu = true;
+        }
+
 
         if (cpuCoreRecommended && cpuGenRecommended && ramRecommended && gpuRecommended) recommended = true;
         System.out.println("recom accepted");
@@ -197,7 +216,7 @@ public class Requirements implements ActionListener {
 
 
 
-        if (e.getActionCommand().equals("check")) {
+        if (e.getActionCommand().equals("Check")) {
             frameRequirements = new JFrame("%s Requirements".formatted(comboBoxGame.getSelectedItem()));
             frameRequirements.setSize(500, 540);
             frameRequirements.setLocationRelativeTo(null);
@@ -247,68 +266,99 @@ public class Requirements implements ActionListener {
         lineUnder30fps.setBounds(91, 180, 3, 20);
         lineUnder30fps.setOpaque(true);
         lineUnder30fps.setBackground(new Color(128, 128, 128));
+        lineUnder30fps.setVisible(false);
         panelRequirements.add(lineUnder30fps);
 
         JLabel line30to60fps = new JLabel("", JLabel.CENTER);
         line30to60fps.setBounds(251, 180, 3, 20);
         line30to60fps.setOpaque(true);
         line30to60fps.setBackground(new Color(128, 128, 128));
+        line30to60fps.setVisible(false);
         panelRequirements.add(line30to60fps);
 
         JLabel lineUpper60fps = new JLabel("", JLabel.CENTER);
         lineUpper60fps.setBounds(401, 180, 3, 20);
         lineUpper60fps.setOpaque(true);
         lineUpper60fps.setBackground(new Color(128, 128, 128));
+        lineUpper60fps.setVisible(false);
         panelRequirements.add(lineUpper60fps);
 
         JLabel fpsUnder30 = new JLabel("your fps", JLabel.CENTER);
         fpsUnder30.setBounds(30, 150, 120, 20);
         fpsUnder30.setOpaque(true);
         fpsUnder30.setFont(textFont);
+        fpsUnder30.setVisible(false);
         panelRequirements.add(fpsUnder30);
 
         JLabel fps30to60 = new JLabel("your fps", JLabel.CENTER);
         fps30to60.setBounds(150, 150, 200, 20);
         fps30to60.setOpaque(true);
         fps30to60.setFont(textFont);
+        fps30to60.setVisible(false);
         panelRequirements.add(fps30to60);
 
         JLabel fpsUpper60 = new JLabel("your fps", JLabel.CENTER);
         fpsUpper60.setBounds(350, 150, 100, 20);
         fpsUpper60.setOpaque(true);
         fpsUpper60.setFont(textFont);
+        fpsUpper60.setVisible(false);
         panelRequirements.add(fpsUpper60);
 
         JLabel cpuLabel = new JLabel("Your CPU: ");
-        cpuLabel.setBounds(30, 300, 200, 20);
-        cpuLabel.setFont(textFont);
+        cpuLabel.setBounds(30, 320, 200, 20);
+        cpuLabel.setFont(infoFont);
         panelRequirements.add(cpuLabel);
 
         JLabel ramLabel = new JLabel("Your RAM: ");
-        ramLabel.setBounds(30, 340, 200, 20);
-        ramLabel.setFont(textFont);
+        ramLabel.setBounds(30, 370, 200, 20);
+        ramLabel.setFont(infoFont);
         panelRequirements.add(ramLabel);
 
         JLabel gpuLabel = new JLabel("Your GPU: ");
-        gpuLabel.setBounds(30, 380, 200, 20);
-        gpuLabel.setFont(textFont);
+        gpuLabel.setBounds(30, 420, 200, 20);
+        gpuLabel.setFont(infoFont);
         panelRequirements.add(gpuLabel);
 
         JLabel yourCpuLabel = new JLabel(comboBoxCPU.getSelectedItem() + " " + textFieldGen.getText());
-        yourCpuLabel.setBounds(140, 300, 200, 20);
-        yourCpuLabel.setFont(textFont);
+        yourCpuLabel.setBounds(170, 320, 200, 20);
+        yourCpuLabel.setFont(infoFont);
         panelRequirements.add(yourCpuLabel);
 
         JLabel yourRamLabel = new JLabel(textFieldRam.getText() + " GB");
-        yourRamLabel.setBounds(140, 340, 200, 20);
-        yourRamLabel.setFont(textFont);
+        yourRamLabel.setBounds(170, 370, 200, 20);
+        yourRamLabel.setFont(infoFont);
         panelRequirements.add(yourRamLabel);
 
         JLabel yourGpuLabel = new JLabel(comboBoxGPU.getSelectedItem() + " " + textFieldGPU.getText());
-        yourGpuLabel.setBounds(140, 380, 200, 20);
-        yourGpuLabel.setFont(textFont);
+        yourGpuLabel.setBounds(170, 420, 200, 20);
+        yourGpuLabel.setFont(infoFont);
         panelRequirements.add(yourGpuLabel);
 
+        if (cpu && ram && gpu) {
+            lineUpper60fps.setVisible(true);
+            fpsUpper60.setVisible(true);
+        } else if (cpu && ram) {
+            lineUnder30fps.setVisible(true);
+            fpsUnder30.setVisible(true);
+        } else if (cpu && !gpu) {
+            lineUnder30fps.setVisible(true);
+            fpsUnder30.setVisible(true);
+        } else if (!cpu && ram && !gpu) {
+            lineUnder30fps.setVisible(true);
+            fpsUnder30.setVisible(true);
+        } else if (!cpu && ram) {
+            line30to60fps.setVisible(true);
+            fps30to60.setVisible(true);
+        } else if (cpu && gpu) {
+            line30to60fps.setVisible(true);
+            fps30to60.setVisible(true);
+        } else if (gpu) {
+            lineUnder30fps.setVisible(true);
+            fpsUnder30.setVisible(true);
+        }else {
+            lineUnder30fps.setVisible(true);
+            fpsUnder30.setVisible(true);
+        }
 
 
         if (!cpuCoreRecommended && !cpuGenRecommended && !cpuCoreMinimum && !cpuGenMinimum) {
