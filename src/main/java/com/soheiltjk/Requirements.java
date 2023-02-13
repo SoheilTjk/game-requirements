@@ -81,7 +81,12 @@ public class Requirements implements ActionListener {
                 pleaseChoose,
                 "Resident Evil Village",
                 "Hogwarts Legacy",
-                "Control"
+                "Control",
+                "Red Dead Redemption 2",
+                "Resident Evil 2 Remake",
+                "Cyberpunk 2077",
+                "Resident Evil 3 Remake",
+                "Dying Light 2"
         };
         Arrays.sort(gamesList);
 
@@ -147,9 +152,29 @@ public class Requirements implements ActionListener {
             minimumArray = new int[]{5, 4690, 8, 780};
             recommendedArray = new int[]{5, 7600, 16, 1660};
         }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Red Dead Redemption 2")) {
+            minimumArray = new int[]{5, 2500, 8, 770};
+            recommendedArray = new int[]{7, 4770, 12, 1060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Resident Evil 2 Remake")) {
+            minimumArray = new int[]{5, 4460, 8, 960};
+            recommendedArray = new int[]{7, 3770, 8, 2060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Cyberpunk 2077")) {
+            minimumArray = new int[]{5, 3570, 8, 780};
+            recommendedArray = new int[]{7, 4790, 12, 1060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Resident Evil 3 Remake")) {
+            minimumArray = new int[]{5, 4460, 8, 960};
+            recommendedArray = new int[]{7, 3770, 8, 2060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Dying Light 2")) {
+            minimumArray = new int[]{3, 9100, 8, 1050};
+            recommendedArray = new int[]{5, 8600, 16, 2060};
+        }
 
 
-        //recommended
+        //recommended and minimum
 
         if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
             cpuCoreRecommended = true;
@@ -313,32 +338,32 @@ public class Requirements implements ActionListener {
         panelRequirements.add(fpsUpper60);
 
         JLabel cpuLabel = new JLabel("Your CPU: ");
-        cpuLabel.setBounds(30, 320, 200, 20);
+        cpuLabel.setBounds(30, 280, 200, 20);
         cpuLabel.setFont(infoFont);
         panelRequirements.add(cpuLabel);
 
         JLabel ramLabel = new JLabel("Your RAM: ");
-        ramLabel.setBounds(30, 370, 200, 20);
+        ramLabel.setBounds(30, 330, 200, 20);
         ramLabel.setFont(infoFont);
         panelRequirements.add(ramLabel);
 
         JLabel gpuLabel = new JLabel("Your GPU: ");
-        gpuLabel.setBounds(30, 420, 200, 20);
+        gpuLabel.setBounds(30, 380, 200, 20);
         gpuLabel.setFont(infoFont);
         panelRequirements.add(gpuLabel);
 
         JLabel yourCpuLabel = new JLabel(comboBoxCPU.getSelectedItem() + " " + textFieldGen.getText());
-        yourCpuLabel.setBounds(170, 320, 200, 20);
+        yourCpuLabel.setBounds(170, 280, 200, 20);
         yourCpuLabel.setFont(infoFont);
         panelRequirements.add(yourCpuLabel);
 
         JLabel yourRamLabel = new JLabel(textFieldRam.getText() + " GB");
-        yourRamLabel.setBounds(170, 370, 200, 20);
+        yourRamLabel.setBounds(170, 330, 200, 20);
         yourRamLabel.setFont(infoFont);
         panelRequirements.add(yourRamLabel);
 
         JLabel yourGpuLabel = new JLabel(comboBoxGPU.getSelectedItem() + " " + textFieldGPU.getText());
-        yourGpuLabel.setBounds(170, 420, 200, 20);
+        yourGpuLabel.setBounds(170, 380, 200, 20);
         yourGpuLabel.setFont(infoFont);
         panelRequirements.add(yourGpuLabel);
 
