@@ -45,7 +45,7 @@ public class Requirements implements ActionListener {
     }
 
     //labels, forms and Information
-    public void placeComponents(JPanel panel) throws IOException, FontFormatException {
+    private void placeComponents(JPanel panel) throws IOException, FontFormatException {
         panel.setLayout(null);
 
         File fontFile1 = new File("src/main/resources/fonts/Comfortaa-Regular.ttf");
@@ -179,7 +179,7 @@ public class Requirements implements ActionListener {
         if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
             cpuCoreRecommended = true;
             cpuCoreMinimum = true;
-            System.out.println("cpu core recomended: " + cpuCoreRecommended);
+            System.out.println("cpu core recommended: " + cpuCoreRecommended);
         } else if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= minimumArray[0]) {
             cpuCoreMinimum = true;
             cpuCoreRecommended = false;
@@ -192,11 +192,11 @@ public class Requirements implements ActionListener {
         if (Integer.parseInt(textFieldGen.getText().trim()) >= recommendedArray[1]) {
             cpuGenRecommended = true;
             cpuGenMinimum = true;
-            System.out.println("cpu gen recom: " + cpuGenRecommended);
+            System.out.println("cpu gen recommended: " + cpuGenRecommended);
         } else if (Integer.parseInt(textFieldGen.getText().trim()) >= minimumArray[1] && Integer.parseInt(textFieldGen.getText().trim()) <= recommendedArray[1]) {
             cpuGenMinimum = true;
             cpuGenRecommended = false;
-            System.out.println("cpu gen min: " + cpuGenRecommended);
+            System.out.println("cpu gen minimum: " + cpuGenRecommended);
         } else {
             cpuGenRecommended = false;
             cpuGenMinimum = false;
@@ -209,7 +209,7 @@ public class Requirements implements ActionListener {
         if (Integer.parseInt(textFieldRam.getText()) >= recommendedArray[2]) {
             ramRecommended = true;
             ramMinimum = false;
-            System.out.println("ram recom : " + ramRecommended);
+            System.out.println("ram recommended : " + ramRecommended);
         } else if (Integer.parseInt(textFieldRam.getText()) >= minimumArray[2] && Integer.parseInt(textFieldRam.getText()) <= recommendedArray[2]) {
             ramMinimum = true;
             ramRecommended = false;
@@ -226,11 +226,11 @@ public class Requirements implements ActionListener {
         if (Integer.parseInt(textFieldGPU.getText()) >= recommendedArray[3]) {
             gpuRecommended = true;
             gpuMinimum = true;
-            System.out.println("gpu recom: " + gpuRecommended);
+            System.out.println("gpu recommended: " + gpuRecommended);
         } else if (Integer.parseInt(textFieldGPU.getText()) >= minimumArray[3] && Integer.parseInt(textFieldGPU.getText()) <= recommendedArray[3]) {
             gpuMinimum = true;
             gpuRecommended = false;
-            System.out.println("gpu min: " + gpuMinimum);
+            System.out.println("gpu minimum: " + gpuMinimum);
         } else {
             gpuRecommended = false;
             gpuMinimum = false;
@@ -242,11 +242,9 @@ public class Requirements implements ActionListener {
 
 
         if (cpuCoreRecommended && cpuGenRecommended && ramRecommended && gpuRecommended) recommended = true;
-        System.out.println("recom accepted");
+        System.out.println("full recommended accepted");
         if (cpuCoreMinimum && cpuGenMinimum && ramMinimum && gpuMinimum) minimum = true;
-        System.out.println("minimum accepted");
-
-
+        System.out.println("full minimum accepted");
 
 
         if (e.getActionCommand().equals("Check")) {
@@ -261,14 +259,15 @@ public class Requirements implements ActionListener {
             frameRequirements.setVisible(true);
         }
     }
-    public void showRequirements(JPanel panelRequirements) {
+
+    private void showRequirements(JPanel panelRequirements) {
         JLabel labelGameSelected = new JLabel("%s Requirements".formatted(comboBoxGame.getSelectedItem()), SwingConstants.CENTER);
         labelGameSelected.setBounds(0, 20, 500, 40);
         labelGameSelected.setFont(textFont);
         panelRequirements.add(labelGameSelected);
         JSeparator separator = new JSeparator();
         separator.setOrientation(SwingConstants.HORIZONTAL);
-        separator.setBounds(100, 90, 300,10);
+        separator.setBounds(100, 90, 300, 10);
         panelRequirements.add(separator);
 
         JLabel labelUnder30fps = new JLabel("fps < 30", JLabel.CENTER);
@@ -388,7 +387,7 @@ public class Requirements implements ActionListener {
         } else if (gpu) {
             lineUnder30fps.setVisible(true);
             fpsUnder30.setVisible(true);
-        }else {
+        } else {
             lineUnder30fps.setVisible(true);
             fpsUnder30.setVisible(true);
         }
@@ -419,7 +418,7 @@ public class Requirements implements ActionListener {
             yourRamLabel.setForeground(Color.RED);
         } else if (ramMinimum && !ramRecommended) {
             yourRamLabel.setForeground(Color.GREEN);
-        }else {
+        } else {
             yourRamLabel.setForeground(Color.BLUE);
         }
 
