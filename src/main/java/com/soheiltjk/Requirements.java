@@ -27,16 +27,6 @@ public class Requirements implements ActionListener {
     boolean gpu = false;
 
     boolean notSupported = false;
-    boolean cpuLow = false;
-    boolean cpuHigh = false;
-    boolean cpuUltra = false;
-    boolean ramLow = false;
-    boolean ramHigh = false;
-    boolean ramUltra = false;
-    boolean gpuLow = false;
-    boolean gpuHigh = false;
-    boolean gpuUltra = false;
-
     boolean low = false;
     boolean high = false;
     boolean ultra = false;
