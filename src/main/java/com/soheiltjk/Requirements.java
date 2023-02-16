@@ -25,6 +25,21 @@ public class Requirements implements ActionListener {
     boolean cpu = false;
     boolean ram = false;
     boolean gpu = false;
+
+    boolean notSupported = false;
+    boolean cpuLow = false;
+    boolean cpuHigh = false;
+    boolean cpuUltra = false;
+    boolean ramLow = false;
+    boolean ramHigh = false;
+    boolean ramUltra = false;
+    boolean gpuLow = false;
+    boolean gpuHigh = false;
+    boolean gpuUltra = false;
+
+    boolean low = false;
+    boolean high = false;
+    boolean ultra = false;
     JFrame frame, frameRequirements;
     JLabel labelGame, labelCPU, labelRAM, labelGPU;
     JComboBox<String> comboBoxGame, comboBoxCPU, comboBoxGPU;
@@ -351,6 +366,11 @@ public class Requirements implements ActionListener {
         gpuLabel.setFont(infoFont);
         panelRequirements.add(gpuLabel);
 
+        JLabel suggestedResolution = new JLabel("Suggested resolution: ", SwingConstants.CENTER);
+        suggestedResolution.setBounds(0, 440, 500, 40);
+        suggestedResolution.setFont(textFont);
+        panelRequirements.add(suggestedResolution);
+
         JLabel yourCpuLabel = new JLabel(comboBoxCPU.getSelectedItem() + " " + textFieldGen.getText());
         yourCpuLabel.setBounds(170, 280, 200, 20);
         yourCpuLabel.setFont(infoFont);
@@ -365,6 +385,22 @@ public class Requirements implements ActionListener {
         yourGpuLabel.setBounds(170, 380, 200, 20);
         yourGpuLabel.setFont(infoFont);
         panelRequirements.add(yourGpuLabel);
+
+        JLabel notSupportedLabel = new JLabel("You can't run this game", SwingConstants.CENTER);
+        notSupportedLabel.setBounds(0, 460, 500, 40);
+        notSupportedLabel.setFont(textFont);
+
+        JLabel lowResolutionLabel = new JLabel("Low Resolution", SwingConstants.CENTER);
+        lowResolutionLabel.setBounds(0, 460, 500, 40);
+        lowResolutionLabel.setFont(textFont);
+
+        JLabel highResolutionLabel = new JLabel("High Resolution", SwingConstants.CENTER);
+        highResolutionLabel.setBounds(0, 460, 500, 40);
+        highResolutionLabel.setFont(textFont);
+
+        JLabel ultraResolutionLabel = new JLabel("Ultra Resolution", SwingConstants.CENTER);
+        ultraResolutionLabel.setBounds(0, 460, 500, 40);
+        ultraResolutionLabel.setFont(textFont);
 
         if (cpu && ram && gpu) {
             lineUpper60fps.setVisible(true);
@@ -427,5 +463,31 @@ public class Requirements implements ActionListener {
         } else if (gpuRecommended) {
             yourGpuLabel.setForeground(Color.BLUE);
         } else yourGpuLabel.setForeground(Color.GREEN);
+
+
+        if (cpuCoreRecommended && cpuGenRecommended && ramRecommended && gpuRecommended) {
+            ultra = true;
+        } else if (cpuCoreMinimum && cpuGenMinimum && ramMinimum && gpuMinimum && !cpuCoreRecommended && !cpuGenRecommended && !ramRecommended && !gpuRecommended) {
+            low = true;
+        } else if (!cpuCoreMinimum && !cpuGenMinimum && !ramMinimum && !gpuMinimum && !cpuCoreRecommended && !cpuGenRecommended && !ramRecommended && !gpuRecommended) {
+            notSupported = true;
+        }
+        if (!ultra && !high && !notSupported) high = true;
+
+
+        if (ultra) {
+            ultraResolutionLabel.setForeground(Color.BLUE);
+            panelRequirements.add(ultraResolutionLabel);
+        } else if (notSupported) {
+            notSupportedLabel.setForeground(Color.RED);
+            panelRequirements.add(notSupportedLabel);
+        } else if (low) {
+            lowResolutionLabel.setForeground(Color.MAGENTA);
+            panelRequirements.add(lowResolutionLabel);
+        } else if (high) {
+            highResolutionLabel.setForeground(Color.GREEN);
+            panelRequirements.add(highResolutionLabel);
+        }
+
     }
 }
