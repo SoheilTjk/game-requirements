@@ -439,7 +439,6 @@ public class Requirements implements ActionListener {
             yourCpuLabel.setForeground(Color.RED);
         }
 
-
         if (!ramRecommended && !ramMinimum) {
             yourRamLabel.setForeground(Color.RED);
         } else if (ramMinimum && !ramRecommended) {
