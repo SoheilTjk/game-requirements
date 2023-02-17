@@ -36,6 +36,7 @@ public class Requirements implements ActionListener {
     JTextField textFieldGen, textFieldRam, textFieldGPU;
     Font titleFont, textFont, infoFont, buttonFont;
 
+
     //main body
     public void mainFrame() throws IOException, FontFormatException {
         frame = new JFrame("Games Requirements");
