@@ -461,23 +461,22 @@ public class Requirements implements ActionListener {
             low = true;
         } else if (!cpuCoreMinimum && !cpuGenMinimum && !ramMinimum && !gpuMinimum && !cpuCoreRecommended && !cpuGenRecommended && !ramRecommended && !gpuRecommended) {
             notSupported = true;
+        } else {
+            high = true;
         }
-        if (!ultra && !high && !notSupported) high = true;
-
 
         if (ultra) {
             ultraResolutionLabel.setForeground(Color.BLUE);
             panelRequirements.add(ultraResolutionLabel);
-        } else if (notSupported) {
-            notSupportedLabel.setForeground(Color.RED);
-            panelRequirements.add(notSupportedLabel);
         } else if (low) {
             lowResolutionLabel.setForeground(Color.MAGENTA);
             panelRequirements.add(lowResolutionLabel);
-        } else if (high) {
+        } else if (high){
             highResolutionLabel.setForeground(Color.GREEN);
             panelRequirements.add(highResolutionLabel);
+        } else {
+            notSupportedLabel.setForeground(Color.RED);
+            panelRequirements.add(notSupportedLabel);
         }
-
     }
 }
