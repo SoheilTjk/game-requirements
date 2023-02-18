@@ -92,7 +92,12 @@ public class Requirements implements ActionListener {
                 "Resident Evil 2 Remake",
                 "Cyberpunk 2077",
                 "Resident Evil 3 Remake",
-                "Dying Light 2"
+                "Dying Light 2",
+                "Elden Ring",
+                "Outlast 2",
+                "The Evil Within",
+                "The Evil Within 2",
+                "Resident Evil 7 Biohazard"
         };
         Arrays.sort(gamesList);
 
@@ -177,6 +182,26 @@ public class Requirements implements ActionListener {
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Dying Light 2")) {
             minimumArray = new int[]{3, 9100, 8, 1050};
             recommendedArray = new int[]{5, 8600, 16, 2060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Elden Ring")) {
+            minimumArray = new int[]{5, 8400, 12, 1080};
+            recommendedArray = new int[]{7, 8700, 16, 1070};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Outlast 2")) {
+            minimumArray = new int[]{3, 530, 4, 260};
+            recommendedArray = new int[]{5, 0, 8, 660};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "The Evil Within")) {
+            minimumArray = new int[]{4, 0, 4, 460};
+            recommendedArray = new int[]{5, 0, 4, 640};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "The Evil Within 2")) {
+            minimumArray = new int[]{5, 2400, 8, 660};
+            recommendedArray = new int[]{7, 4770, 16, 1080};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Resident Evil 7 Biohazard")) {
+            minimumArray = new int[]{5, 4460, 8, 960};
+            recommendedArray = new int[]{7, 3770, 8, 2060};
         }
 
 
