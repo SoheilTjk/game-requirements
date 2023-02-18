@@ -7,6 +7,7 @@ Select the game you want, then enter the information of your computer's hardware
 By clicking the Check button, you can see how many fps your selected game can run and what resolution it recommends you.
 
 note: more games will be added.
+
 The list of games that this program has supported so far:
 Control
 Cyberpunk 2077
