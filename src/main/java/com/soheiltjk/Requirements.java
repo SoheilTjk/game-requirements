@@ -358,7 +358,7 @@ public class Requirements implements ActionListener {
         panelRequirements.add(gpuLabel);
 
         JLabel suggestedResolution = new JLabel("Suggested resolution: ", SwingConstants.CENTER);
-        suggestedResolution.setBounds(0, 440, 500, 40);
+        suggestedResolution.setBounds(0, 420, 500, 40);
         suggestedResolution.setFont(textFont);
         panelRequirements.add(suggestedResolution);
 
@@ -378,19 +378,19 @@ public class Requirements implements ActionListener {
         panelRequirements.add(yourGpuLabel);
 
         JLabel notSupportedLabel = new JLabel("You can't run this game", SwingConstants.CENTER);
-        notSupportedLabel.setBounds(0, 460, 500, 40);
+        notSupportedLabel.setBounds(0, 450, 500, 40);
         notSupportedLabel.setFont(textFont);
 
         JLabel lowResolutionLabel = new JLabel("Low Resolution", SwingConstants.CENTER);
-        lowResolutionLabel.setBounds(0, 460, 500, 40);
+        lowResolutionLabel.setBounds(0, 450, 500, 40);
         lowResolutionLabel.setFont(textFont);
 
         JLabel highResolutionLabel = new JLabel("High Resolution", SwingConstants.CENTER);
-        highResolutionLabel.setBounds(0, 460, 500, 40);
+        highResolutionLabel.setBounds(0, 450, 500, 40);
         highResolutionLabel.setFont(textFont);
 
         JLabel ultraResolutionLabel = new JLabel("Ultra Resolution", SwingConstants.CENTER);
-        ultraResolutionLabel.setBounds(0, 460, 500, 40);
+        ultraResolutionLabel.setBounds(0, 450, 500, 40);
         ultraResolutionLabel.setFont(textFont);
 
         if (cpu && ram && gpu) {
