@@ -97,7 +97,10 @@ public class Requirements implements ActionListener {
                 "Outlast 2",
                 "The Evil Within",
                 "The Evil Within 2",
-                "Resident Evil 7 Biohazard"
+                "Resident Evil 7 Biohazard",
+                "God Of War",
+                "Stray",
+                "Marvel's Spider Man"
         };
         Arrays.sort(gamesList);
 
@@ -202,6 +205,18 @@ public class Requirements implements ActionListener {
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Resident Evil 7 Biohazard")) {
             minimumArray = new int[]{5, 4460, 8, 960};
             recommendedArray = new int[]{7, 3770, 8, 2060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "God Of War")) {
+            minimumArray = new int[]{5, 2500, 8, 960};
+            recommendedArray = new int[]{5, 6600, 8, 1060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Stray")) {
+            minimumArray = new int[]{5, 2300, 8, 650};
+            recommendedArray = new int[]{5, 8400, 8, 780};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Marvel's Spider Man")) {
+            minimumArray = new int[]{3, 4160, 8, 950};
+            recommendedArray = new int[]{5, 4670, 16, 1060};
         }
 
 
