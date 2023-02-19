@@ -238,7 +238,7 @@ public class Requirements implements ActionListener {
         if (Integer.parseInt(textFieldGen.getText().trim()) >= recommendedArray[1]) {
             cpuGenRecommended = true;
             cpuGenMinimum = true;
-            System.out.println("cpu gen recommended: " + cpuGenRecommended);
+            System.out.println("cpu gen recommended:" + cpuGenRecommended);
         } else if (Integer.parseInt(textFieldGen.getText().trim()) >= minimumArray[1] && Integer.parseInt(textFieldGen.getText().trim()) <= recommendedArray[1]) {
             cpuGenMinimum = true;
             cpuGenRecommended = false;
