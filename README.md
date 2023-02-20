@@ -18,7 +18,11 @@ Dying Light 2
 
 Elden Ring
 
+God Of War
+
 Hogwarts Legacy
+
+Marvel's Spider Man
 
 Outlast 2
 
@@ -28,9 +32,13 @@ Resident Evil 2 Remake
 
 Resident Evil 3 Remake
 
+Resident Evil 4 Remake
+
 Resident Evil 7 Biohazard
 
 Resident Evil Village
+
+Stray
 
 The Evil Within
 
