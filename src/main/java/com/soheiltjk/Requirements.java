@@ -100,7 +100,8 @@ public class Requirements implements ActionListener {
                 "Resident Evil 7 Biohazard",
                 "God Of War",
                 "Stray",
-                "Marvel's Spider Man"
+                "Marvel's Spider Man",
+                "Resident Evil 4 Remake"
         };
         Arrays.sort(gamesList);
 
@@ -217,6 +218,10 @@ public class Requirements implements ActionListener {
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Marvel's Spider Man")) {
             minimumArray = new int[]{3, 4160, 8, 950};
             recommendedArray = new int[]{5, 4670, 16, 1060};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Resident Evil 4 Remake")) {
+            minimumArray = new int[]{5, 7500, 8, 1050};
+            recommendedArray = new int[]{7, 8700, 16, 1070};
         }
 
 
@@ -508,15 +513,19 @@ public class Requirements implements ActionListener {
         if (ultra) {
             ultraResolutionLabel.setForeground(Color.BLUE);
             panelRequirements.add(ultraResolutionLabel);
+            ultra = false;
         } else if (low) {
             lowResolutionLabel.setForeground(Color.MAGENTA);
             panelRequirements.add(lowResolutionLabel);
+            low = false;
         } else if (high){
             highResolutionLabel.setForeground(Color.GREEN);
             panelRequirements.add(highResolutionLabel);
+            high = false;
         } else {
             notSupportedLabel.setForeground(Color.RED);
             panelRequirements.add(notSupportedLabel);
+            notSupported = false;
         }
     }
 }
