@@ -161,7 +161,7 @@ public class Requirements implements ActionListener {
         }
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Hogwarts Legacy")) {
             minimumArray = new int[]{5, 6600, 16, 960};
-            recommendedArray = new int[]{7, 8700, 16, 1080};
+            recommendedArray = new int[]{7, 10700, 32, 3090};
         }
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Control")) {
             minimumArray = new int[]{5, 4690, 8, 780};
