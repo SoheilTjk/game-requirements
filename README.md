@@ -22,6 +22,10 @@ God Of War
 
 Hogwarts Legacy
 
+Little Nightmares
+
+Little Nightmares 2
+
 Marvel's Spider Man
 
 Outlast 2
