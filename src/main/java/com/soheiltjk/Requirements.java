@@ -103,7 +103,8 @@ public class Requirements implements ActionListener {
                 "Marvel's Spider Man",
                 "Resident Evil 4 Remake",
                 "Little Nightmares",
-                "Little Nightmares 2"
+                "Little Nightmares 2",
+                "The Last Of Us Part 1"
         };
         Arrays.sort(gamesList);
 
@@ -232,6 +233,10 @@ public class Requirements implements ActionListener {
         if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "Little Nightmares 2")) {
             minimumArray = new int[]{5, 2300, 4, 570};
             recommendedArray = new int[]{5, 8400, 8, 2080};
+        }
+        if (Objects.equals(Objects.requireNonNull(comboBoxGame.getSelectedItem()).toString(), "The Last Of Us Part 1")) {
+            minimumArray = new int[]{7, 4770, 16, 1050};
+            recommendedArray = new int[]{5, 12600, 32, 4080};
         }
 
 
