@@ -47,3 +47,5 @@ Stray
 The Evil Within
 
 The Evil Within 2
+
+The Last Of Us Part 1
