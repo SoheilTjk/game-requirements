@@ -1,5 +1,6 @@
 package com.soheiltjk;
 
+//import Packages and Libraries
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -239,8 +240,6 @@ public class Requirements implements ActionListener {
             recommendedArray = new int[]{5, 12600, 32, 4080};
         }
 
-
-        //recommended and minimum
 
         if (Integer.parseInt(String.valueOf(Objects.requireNonNull(comboBoxCPU.getSelectedItem()).toString().charAt(comboBoxCPU.getSelectedItem().toString().length() - 1))) >= recommendedArray[0]) {
             cpuCoreRecommended = true;
